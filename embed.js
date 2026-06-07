@@ -367,7 +367,9 @@ function gplDetail(fi,ui){
       <p style="margin:0 0 20px"><button class="gpl-link" onclick="gplWarranty()">View full warranty →</button></p>
       <div style="display:flex;flex-wrap:wrap;gap:10px">
         <div style="flex:1;min-width:150px">${cta}</div>
-        <a class="gpl-btn gpl-btn--ghost" style="flex:1;min-width:150px" href="tel:${GPL_CFG.phoneHref}">Call about it</a>
+        ${GPL_FEATURES[fam.id]
+          ? `<button class="gpl-btn gpl-btn--ghost" style="flex:1;min-width:150px" onclick="gplFeatures('${fam.id}')">See Features</button>`
+          : `<a class="gpl-btn gpl-btn--ghost" style="flex:1;min-width:150px" href="tel:${GPL_CFG.phoneHref}">Call about it</a>`}
       </div>
     </div>`;
   gplOpen('gpl-modal-detail');
