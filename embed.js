@@ -87,10 +87,10 @@ const GPL_FEATURES = {
 
     <p class="gpl-cap" style="margin:0 0 12px">Four stitching modes</p>
     <div class="gpl-feat-vids">
-      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838784361?h=14e346a04a&dnt=1" loading="lazy" allow="fullscreen; picture-in-picture" title="Stitch Regulate"></iframe></div><p class="gpl-vidcap">Stitch Regulate</p></div>
-      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838786204?h=0cb3da42b0&dnt=1" loading="lazy" allow="fullscreen; picture-in-picture" title="Coast Regulate"></iframe></div><p class="gpl-vidcap">Coast Regulate</p></div>
-      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838787734?h=fbff46cf41&dnt=1" loading="lazy" allow="fullscreen; picture-in-picture" title="Constant Speed"></iframe></div><p class="gpl-vidcap">Constant Speed</p></div>
-      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838789339?h=aae8537614&dnt=1" loading="lazy" allow="fullscreen; picture-in-picture" title="Baste"></iframe></div><p class="gpl-vidcap">Baste</p></div>
+      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838784361?h=14e346a04a&dnt=1&app_id=122963" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Stitch Regulate"></iframe></div><p class="gpl-vidcap">Stitch Regulate</p></div>
+      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838786204?h=0cb3da42b0&dnt=1&app_id=122963" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Coast Regulate"></iframe></div><p class="gpl-vidcap">Coast Regulate</p></div>
+      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838787734?h=fbff46cf41&dnt=1&app_id=122963" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Constant Speed"></iframe></div><p class="gpl-vidcap">Constant Speed</p></div>
+      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838789339?h=aae8537614&dnt=1&app_id=122963" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Baste"></iframe></div><p class="gpl-vidcap">Baste</p></div>
     </div>
 
     <p class="gpl-cap" style="margin:24px 0 12px">Built to last</p>
