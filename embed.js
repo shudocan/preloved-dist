@@ -199,7 +199,7 @@ const GPL_FAQS = [
   ['Do you deliver and set it up?','Yes. Delivery, installation, and training are included. We get the machine running in your space and make sure you’re confident on it before we leave.'],
   ['What’s the difference between categories A / B / C?','They reflect age and cosmetic condition, not performance. Category A (2007–current) has the fewest blemishes and the most advanced tables; Category C (1995–2000) shows more wear and uses original-style tables. All three deliver the same stitch.'],
   ['What is a retrofit machine?','A retrofit takes an original Gammill head, rebuilds it at the factory, and replaces the electronics, wiring, and computerized components with brand-new systems — a proven frame with current technology at a lower price.'],
-  ['Can I trade in my current machine?','Absolutely — trade-ins are welcome and can go toward your pre-loved purchase. Talk to a specialist for a valuation.'],
+  ['Can I trade in my current machine?','We take any Gammill machine in trade, but not other brands.'],
 ];
 
 /* ================= HELPERS ================= */
