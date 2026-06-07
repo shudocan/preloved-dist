@@ -60,7 +60,7 @@ const FAMILIES = [
   { id:'ascend', name:'Ascend', type:'computerized', typeLabel:'Computerized',
     image:'https://gammill.com/wp-content/uploads/2023/03/StatlerAscend320x241.png',
     tagline:'Ultimate Precision and Speed',
-    blurb:'The latest generation of computerized quilting, running the Mod G5 controller. Everything the Statler does, on Gammill’s most current system.',
+    blurb:'The Ascend finishes your quilts faster, completing 3-5 quilts per day without losing accuracy. Software features are identical to Statler — the differences are in the hardware, electronics, and motors involved in moving the machine across the quilt.',
     shared:[['Operation','Computerized, Mod G5 controller'],['Throat sizes','22″ · 26″ · 30″']],
     included:['Full factory refurbishment & certification','Factory warranty','New canvas leaders on the table','Delivery, setup & training','Retrofits include all-new electronics & wiring'],
     units:[
