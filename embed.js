@@ -79,13 +79,54 @@ const FAMILIES = [
 
 /* Per-family "Review … Features" modal content (from the gammill.com machine
    pages). Add statler/ascend keys the same way to give those families a button. */
+/* Vision stitching-mode demo videos. kind: 'youtube' | 'vimeo' (+hash for vimeo).
+   The original Vimeo clips (KM_V2_*) live on an account we don't control and got
+   locked — swapping in Gammill's YouTube versions. To replace a dead one: set
+   kind:'youtube', id:'<watch id>', and remove dead:true. Dead entries don't render. */
+const GPL_VISION_VIDS = [
+  {label:'Stitch Regulate', kind:'vimeo', id:'838784361', hash:'14e346a04a', dead:true},
+  {label:'Coast Regulate',  kind:'youtube', id:'jAW1tbUzT_M'},
+  {label:'Constant Speed',  kind:'vimeo', id:'838787734', hash:'fbff46cf41', dead:true},
+  {label:'Baste',           kind:'vimeo', id:'838789339', hash:'aae8537614', dead:true},
+];
+function gplVidEmbed(v){
+  var src = v.kind==='youtube'
+    ? 'https://www.youtube-nocookie.com/embed/'+v.id+'?rel=0'
+    : 'https://player.vimeo.com/video/'+v.id+'?h='+v.hash+'&dnt=1&app_id=122963';
+  var wrap = v.star ? ' style="grid-column:1/-1"' : '';   // featured = full-width
+  var cap = (v.star ? '★ ' : '') + v.label;
+  return '<div'+wrap+'><div class="gpl-vid16"><iframe src="'+src+'" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="'+v.label+'"></iframe></div><p class="gpl-vidcap">'+cap+'</p></div>';
+}
+function gplVisionVids(){ return GPL_VISION_VIDS.filter(function(v){return !v.dead}).map(gplVidEmbed).join(''); }
+
+/* CreativeStudio demo videos for the computerized (Statler/Ascend) modal. Same
+   embed format; add more with {label, kind, id, hash}. */
+const GPL_CS_VIDS = [
+  {label:'Edge to edge', kind:'vimeo', id:'882301652', hash:'5e346d3318', star:true},
+  {label:'Nodes', kind:'vimeo', id:'987223894', hash:'ddf99e8dec'},
+  {label:'Fill',  kind:'vimeo', id:'987221317', hash:'a7c168c96f'},
+  {label:'Echo',  kind:'vimeo', id:'987201059', hash:'9612db3d5a'},
+  {label:'Apply', kind:'vimeo', id:'987186986', hash:'c5489175f8'},
+  {label:'Text',  kind:'vimeo', id:'987230745', hash:'b04c6a2678'},
+  {label:'Flip & mirror', kind:'vimeo', id:'987227849', hash:'86908342d3'},
+  {label:'Rubber stamp', kind:'vimeo', id:'987228641', hash:'716493c834'},
+  {label:'Circular array', kind:'vimeo', id:'987198581', hash:'b7da455857'},
+  {label:'Border & corner', kind:'vimeo', id:'1086110468', hash:'33a9152a32'},
+  {label:'Quick pantograph', kind:'vimeo', id:'1083580615', hash:'6e62f67909'},
+];
+function gplCsVids(){ return GPL_CS_VIDS.filter(function(v){return !v.dead}).map(gplVidEmbed).join(''); }
+
 // Shared computerized modal — Statler & Ascend in one, with a tier toggle.
 // gplFeatures() opens it on the tab matching the family clicked.
 const GPL_COMPUTERIZED = `
     <p class="h-eyebrow" style="margin-bottom:8px">Computerized</p>
     <h2 style="font-size:27px;margin-bottom:6px">Computerized Quilting — Statler &amp; Ascend</h2>
     <p class="muted" style="margin:0">Gammill’s proven computerized system stitches your design for you — load a pattern, press start, and get flawless edge-to-edge repeats while you step away. Both tiers share the same DNA; the Ascend adds more light and speed.</p>
-    <div class="gpl-tabs">
+    <div class="gpl-vid16" style="margin:18px 0 6px"><iframe src="https://player.vimeo.com/video/1086116503?h=7cf06b6034&dnt=1&app_id=122963" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Statler vs Ascend"></iframe></div>
+    <p class="gpl-vidcap" style="text-align:center;margin:0 0 4px">Statler vs Ascend — see the difference</p>
+    <p class="gpl-cap" style="margin:18px 0 12px">CreativeStudio® in action</p>
+    <div class="gpl-feat-vids">${gplCsVids()}</div>
+    <div class="gpl-tabs" style="margin-top:22px">
       <button class="gpl-tab on" data-t="0" onclick="gplFeatTab(0)">Statler</button>
       <button class="gpl-tab" data-t="1" onclick="gplFeatTab(1)">Ascend</button>
     </div>
@@ -143,13 +184,8 @@ const GPL_FEATURES = {
     <h2 style="font-size:27px;margin-bottom:6px">Vision 2.0 — The Key to Confidence</h2>
     <p class="muted" style="margin:0 0 22px">Free-motion longarm quilting with full creative control: beautiful, hand-guided results with the reliability of a Gammill.</p>
 
-    <p class="gpl-cap" style="margin:0 0 12px">Four stitching modes</p>
-    <div class="gpl-feat-vids">
-      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838784361?h=14e346a04a&dnt=1&app_id=122963" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Stitch Regulate"></iframe></div><p class="gpl-vidcap">Stitch Regulate</p></div>
-      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838786204?h=0cb3da42b0&dnt=1&app_id=122963" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Coast Regulate"></iframe></div><p class="gpl-vidcap">Coast Regulate</p></div>
-      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838787734?h=fbff46cf41&dnt=1&app_id=122963" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Constant Speed"></iframe></div><p class="gpl-vidcap">Constant Speed</p></div>
-      <div><div class="gpl-vid16"><iframe src="https://player.vimeo.com/video/838789339?h=aae8537614&dnt=1&app_id=122963" loading="lazy" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share" referrerpolicy="strict-origin-when-cross-origin" title="Baste"></iframe></div><p class="gpl-vidcap">Baste</p></div>
-    </div>
+    <p class="gpl-cap" style="margin:0 0 12px">Stitching modes</p>
+    <div class="gpl-feat-vids">${gplVisionVids()}</div>
 
     <p class="gpl-cap" style="margin:24px 0 12px">Built to last</p>
     <div class="gpl-feat-block"><b>Machine head</b><span>Durable cast aluminum and steel, built to last generations.</span></div>
@@ -495,5 +531,5 @@ function gplLoadInventory(){
 gplRenderHeroStats(); gplRenderFamilies(); gplRenderFAQ(); gplTab(0);
 gplLoadInventory();
 gplInitBizplan();
-  Object.assign(window, {gplApply,gplBuild,gplCategory,gplClose,gplDeposit,gplDetail,gplFamily,gplFeatTab,gplFeatures,gplFilterThroat,gplFilterType,gplInitBizplan,gplInquiry,gplLoadBizplanForm,gplLoadInventory,gplOpen,gplParseCSV,gplPricing,gplRenderFAQ,gplRenderFamilies,gplRenderHeroStats,gplResLabel,gplReserve,gplSubmit,gplTab,gplUnitRow,gplWarranty,gplWarrantyFull});
+  Object.assign(window, {gplApply,gplBuild,gplCategory,gplClose,gplCsVids,gplDeposit,gplDetail,gplFamily,gplFeatTab,gplFeatures,gplFilterThroat,gplFilterType,gplInitBizplan,gplInquiry,gplLoadBizplanForm,gplLoadInventory,gplOpen,gplParseCSV,gplPricing,gplRenderFAQ,gplRenderFamilies,gplRenderHeroStats,gplResLabel,gplReserve,gplSubmit,gplTab,gplUnitRow,gplVidEmbed,gplVisionVids,gplWarranty,gplWarrantyFull});
 })();
