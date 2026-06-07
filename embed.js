@@ -79,6 +79,64 @@ const FAMILIES = [
 
 /* Per-family "Review … Features" modal content (from the gammill.com machine
    pages). Add statler/ascend keys the same way to give those families a button. */
+// Shared computerized modal — Statler & Ascend in one, with a tier toggle.
+// gplFeatures() opens it on the tab matching the family clicked.
+const GPL_COMPUTERIZED = `
+    <p class="h-eyebrow" style="margin-bottom:8px">Computerized</p>
+    <h2 style="font-size:27px;margin-bottom:6px">Computerized Quilting — Statler &amp; Ascend</h2>
+    <p class="muted" style="margin:0">Gammill’s proven computerized system stitches your design for you — load a pattern, press start, and get flawless edge-to-edge repeats while you step away. Both tiers share the same DNA; the Ascend adds more light and speed.</p>
+    <div class="gpl-tabs">
+      <button class="gpl-tab on" data-t="0" onclick="gplFeatTab(0)">Statler</button>
+      <button class="gpl-tab" data-t="1" onclick="gplFeatTab(1)">Ascend</button>
+    </div>
+
+    <div class="gpl-tabpanel on">
+      <p class="gpl-cap" style="margin:0 0 12px">What it does</p>
+      <div class="gpl-feat-block"><b>Automated stitching</b><span>Choose a design, set your quilt area, and the Statler stitches it for you — precise, repeatable, edge to edge.</span></div>
+      <div class="gpl-feat-block"><b>CreativeStudio® software</b><span>A full pattern library married to software that’s both simple to learn and unlimited in capabilities.</span></div>
+      <div class="gpl-feat-block"><b>Hand-guided too</b><span>Every Statler is still a full hand-guided machine — switch to free-motion any time for custom work.</span></div>
+      <div class="gpl-feat-block"><b>Earns its keep</b><span>Built for production: 2–3 finished quilts a day.</span></div>
+
+      <p class="gpl-cap" style="margin:24px 0 10px">Every Statler includes</p>
+      <ul class="gpl-incl">
+        <li><span class="ck">✓</span>CreativeStudio® software + pattern library</li>
+        <li><span class="ck">✓</span>One-touch horizontal &amp; vertical channel locks</li>
+        <li><span class="ck">✓</span>Laser light + LED light fixture</li>
+        <li><span class="ck">✓</span>Thread-break sensor</li>
+        <li><span class="ck">✓</span>Full hand-guided / free-motion mode</li>
+      </ul>
+    </div>
+
+    <div class="gpl-tabpanel">
+      <p class="gpl-cap" style="margin:0 0 12px">Everything in the Statler, plus</p>
+      <div class="gpl-feat-block" style="border-left:3px solid var(--orange);padding-left:14px"><b>Vivid throat light</b><span>An additional Vivid light fixture in the throat and arm area floods your stitching field — see every stitch clearly, even on dark fabrics.</span></div>
+      <div class="gpl-feat-block" style="border-left:3px solid var(--orange);padding-left:14px"><b>Upgraded motion</b><span>A faster, more precise motion system tightens every curve and repeat — and lifts output from 2–3 to <b>3–5 finished quilts a day</b>.</span></div>
+
+      <p class="gpl-cap" style="margin:24px 0 10px">Every Ascend includes</p>
+      <ul class="gpl-incl">
+        <li><span class="ck">✓</span>Everything in the Statler (CreativeStudio®, channel locks, sensors)</li>
+        <li><span class="ck">✓</span>Vivid throat &amp; arm light fixture</li>
+        <li><span class="ck">✓</span>Upgraded high-speed precision motion</li>
+        <li><span class="ck">✓</span>Laser light + LED light fixture</li>
+        <li><span class="ck">✓</span>Thread-break sensor</li>
+        <li><span class="ck">✓</span>Full hand-guided / free-motion mode</li>
+      </ul>
+    </div>
+
+    <p class="gpl-cap" style="margin:24px 0 12px">Built to last — both models</p>
+    <div class="gpl-feat-block"><b>Machine head</b><span>Durable cast aluminum and steel, built to last generations.</span></div>
+    <div class="gpl-feat-block"><b>Table</b><span>Industrial-grade, all-steel table with the Breeze Track™ wheel-and-track system for a light, precise touch.</span></div>
+
+    <p class="gpl-cap" style="margin:24px 0 10px">Throat sizes &amp; quilting area</p>
+    <dl style="margin:0">
+      <div class="gpl-spec"><dt>22″</dt><dd>16.5″ quilting area</dd></div>
+      <div class="gpl-spec"><dt>26″</dt><dd>20″ quilting area</dd></div>
+      <div class="gpl-spec"><dt>30″</dt><dd>23.4″ quilting area</dd></div>
+    </dl>
+
+    <p class="muted" style="font-size:14px;margin:20px 0 0"><button class="gpl-link" onclick="gplWarranty()">Read the full warranty &rarr;</button></p>
+  `;
+
 const GPL_FEATURES = {
   vision: `
     <p class="h-eyebrow" style="margin-bottom:8px">Hand-Guided</p>
@@ -118,78 +176,10 @@ const GPL_FEATURES = {
       <div class="gpl-spec"><dt>30″</dt><dd>23.4″ quilting area</dd></div>
     </dl>
 
-    <p class="muted" style="font-size:14px;margin:20px 0 0">Lifetime mechanical warranty + three-year electrical parts warranty, including commercial use.</p>
+    <p class="muted" style="font-size:14px;margin:20px 0 0"><button class="gpl-link" onclick="gplWarranty()">Read the full warranty &rarr;</button></p>
   `,
-  statler: `
-    <p class="h-eyebrow" style="margin-bottom:8px">Computerized</p>
-    <h2 style="font-size:27px;margin-bottom:6px">Statler — The Design Stitches Itself</h2>
-    <p class="muted" style="margin:0 0 22px">Gammill’s proven computerized system. Load a design, press start, and get flawless edge-to-edge repeats while you step away — then take the handles for free-motion whenever you like.</p>
-
-    <p class="gpl-cap" style="margin:0 0 12px">What it does</p>
-    <div class="gpl-feat-block"><b>Automated stitching</b><span>Choose a design, set your quilt area, and the Statler stitches it for you — precise, repeatable, edge to edge.</span></div>
-    <div class="gpl-feat-block"><b>CreativeStudio® software</b><span>A full pattern library plus point-and-click layout, resizing, and custom placement on a touchscreen tablet.</span></div>
-    <div class="gpl-feat-block"><b>Hand-guided too</b><span>Every Statler is still a full hand-guided machine — switch to free-motion any time for custom work.</span></div>
-    <div class="gpl-feat-block"><b>Earns its keep</b><span>Built for production: 2–3 finished quilts a day.</span></div>
-
-    <p class="gpl-cap" style="margin:24px 0 12px">Built to last</p>
-    <div class="gpl-feat-block"><b>Machine head</b><span>Durable cast aluminum and steel, built to last generations.</span></div>
-    <div class="gpl-feat-block"><b>Table</b><span>Industrial-grade, all-steel table with the Breeze Track™ wheel-and-track system for a light, precise touch.</span></div>
-
-    <p class="gpl-cap" style="margin:24px 0 10px">Every Statler includes</p>
-    <ul class="gpl-incl">
-      <li><span class="ck">✓</span>CreativeStudio® software + pattern library</li>
-      <li><span class="ck">✓</span>Touchscreen tablet control</li>
-      <li><span class="ck">✓</span>One-touch horizontal &amp; vertical channel locks</li>
-      <li><span class="ck">✓</span>Laser light + LED light fixture</li>
-      <li><span class="ck">✓</span>Bobbin thread meter &amp; stitch counter</li>
-      <li><span class="ck">✓</span>Thread-break sensor</li>
-      <li><span class="ck">✓</span>Full hand-guided / free-motion mode</li>
-    </ul>
-
-    <p class="gpl-cap" style="margin:24px 0 10px">Throat sizes &amp; quilting area</p>
-    <dl style="margin:0">
-      <div class="gpl-spec"><dt>22″</dt><dd>16.5″ quilting area</dd></div>
-      <div class="gpl-spec"><dt>26″</dt><dd>20″ quilting area</dd></div>
-      <div class="gpl-spec"><dt>30″</dt><dd>23.4″ quilting area</dd></div>
-    </dl>
-
-    <p class="muted" style="font-size:14px;margin:20px 0 0">Lifetime mechanical warranty + three-year electrical parts warranty, including commercial use.</p>
-  `,
-  ascend: `
-    <p class="h-eyebrow" style="margin-bottom:8px">Computerized · Top of the Line</p>
-    <h2 style="font-size:27px;margin-bottom:6px">Ascend — Statler Power, Elevated</h2>
-    <p class="muted" style="margin:0 0 22px">The Ascend does everything the Statler does — automated edge-to-edge stitching, the full CreativeStudio® library, and hand-guided free-motion — then adds more light and faster, more precise motion.</p>
-
-    <p class="gpl-cap" style="margin:0 0 12px">Everything in the Statler, plus</p>
-    <div class="gpl-feat-block" style="border-left:3px solid var(--orange);padding-left:14px"><b>Vivid throat light</b><span>An additional Vivid light fixture in the throat and arm area floods your stitching field — see every stitch clearly, even on dark fabrics.</span></div>
-    <div class="gpl-feat-block" style="border-left:3px solid var(--orange);padding-left:14px"><b>Upgraded motion</b><span>A faster, more precise motion system tightens every curve and repeat — and lifts output from 2–3 to <b>3–5 finished quilts a day</b>.</span></div>
-
-    <p class="gpl-cap" style="margin:24px 0 12px">The Statler foundation it’s built on</p>
-    <div class="gpl-feat-block"><b>Automated stitching</b><span>Load a design, set your area, press start — flawless edge-to-edge repeats while you step away.</span></div>
-    <div class="gpl-feat-block"><b>CreativeStudio® software</b><span>Full pattern library plus point-and-click layout, resizing, and custom placement on a touchscreen tablet.</span></div>
-    <div class="gpl-feat-block"><b>Hand-guided too</b><span>Switch to full free-motion any time for custom work.</span></div>
-    <div class="gpl-feat-block"><b>Built to last</b><span>Cast aluminum and steel head on an industrial all-steel table with Breeze Track™.</span></div>
-
-    <p class="gpl-cap" style="margin:24px 0 10px">Every Ascend includes</p>
-    <ul class="gpl-incl">
-      <li><span class="ck">✓</span>Everything in the Statler (CreativeStudio®, tablet, channel locks, sensors)</li>
-      <li><span class="ck">✓</span>Vivid throat &amp; arm light fixture</li>
-      <li><span class="ck">✓</span>Upgraded high-speed precision motion</li>
-      <li><span class="ck">✓</span>Laser light + LED light fixture</li>
-      <li><span class="ck">✓</span>Bobbin thread meter &amp; stitch counter</li>
-      <li><span class="ck">✓</span>Thread-break sensor</li>
-      <li><span class="ck">✓</span>Full hand-guided / free-motion mode</li>
-    </ul>
-
-    <p class="gpl-cap" style="margin:24px 0 10px">Throat sizes &amp; quilting area</p>
-    <dl style="margin:0">
-      <div class="gpl-spec"><dt>22″</dt><dd>16.5″ quilting area</dd></div>
-      <div class="gpl-spec"><dt>26″</dt><dd>20″ quilting area</dd></div>
-      <div class="gpl-spec"><dt>30″</dt><dd>23.4″ quilting area</dd></div>
-    </dl>
-
-    <p class="muted" style="font-size:14px;margin:20px 0 0">Lifetime mechanical warranty + three-year electrical parts warranty, including commercial use.</p>
-  `,
+  statler: GPL_COMPUTERIZED,
+  ascend: GPL_COMPUTERIZED,
 };
 
 const GPL_FAQS = [
@@ -316,7 +306,18 @@ function gplFilterThroat(n){
 /* ================= MODALS ================= */
 function gplOpen(id){const m=document.getElementById(id);m.classList.add('open');requestAnimationFrame(()=>m.classList.add('show'));document.body.style.overflow='hidden';}
 function gplClose(id){const m=document.getElementById(id);m.classList.remove('show');setTimeout(()=>{m.classList.remove('open');document.body.style.overflow='';if(id==='gpl-modal-features'){var b=document.getElementById('gpl-feat-body');if(b)b.innerHTML='';}},200);}
-function gplFeatures(famId){ document.getElementById('gpl-feat-body').innerHTML = GPL_FEATURES[famId] || ''; gplOpen('gpl-modal-features'); }
+function gplFeatures(famId){
+  document.getElementById('gpl-feat-body').innerHTML = GPL_FEATURES[famId] || '';
+  // Computerized modal is shared Statler/Ascend — open on the tier clicked.
+  if(famId==='statler'||famId==='ascend') gplFeatTab(famId==='ascend'?1:0);
+  gplOpen('gpl-modal-features');
+}
+// Scoped tab switch for the features modal (won't touch the pricing modal's global tabs).
+function gplFeatTab(i){
+  var b=document.getElementById('gpl-feat-body');
+  b.querySelectorAll('.gpl-tab').forEach(t=>t.classList.toggle('on',Number(t.dataset.t)===i));
+  b.querySelectorAll('.gpl-tabpanel').forEach((p,idx)=>p.classList.toggle('on',idx===i));
+}
 // Business Plan Builder: load the HubSpot form script dynamically (an inline
 // <script> wouldn't run since the page is injected via innerHTML). Lazy: only
 // loads once the section is near the viewport.
@@ -492,5 +493,5 @@ function gplLoadInventory(){
 gplRenderHeroStats(); gplRenderFamilies(); gplRenderFAQ(); gplTab(0);
 gplLoadInventory();
 gplInitBizplan();
-  Object.assign(window, {gplApply,gplBuild,gplCategory,gplClose,gplDeposit,gplDetail,gplFamily,gplFeatures,gplFilterThroat,gplFilterType,gplInitBizplan,gplInquiry,gplLoadBizplanForm,gplLoadInventory,gplOpen,gplParseCSV,gplPricing,gplRenderFAQ,gplRenderFamilies,gplRenderHeroStats,gplResLabel,gplReserve,gplSubmit,gplTab,gplUnitRow,gplWarranty,gplWarrantyFull});
+  Object.assign(window, {gplApply,gplBuild,gplCategory,gplClose,gplDeposit,gplDetail,gplFamily,gplFeatTab,gplFeatures,gplFilterThroat,gplFilterType,gplInitBizplan,gplInquiry,gplLoadBizplanForm,gplLoadInventory,gplOpen,gplParseCSV,gplPricing,gplRenderFAQ,gplRenderFamilies,gplRenderHeroStats,gplResLabel,gplReserve,gplSubmit,gplTab,gplUnitRow,gplWarranty,gplWarrantyFull});
 })();
