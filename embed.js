@@ -44,7 +44,7 @@ const FAMILIES = [
     image:'https://gammill.com/wp-content/uploads/2023/03/Statler340x241.png',
     tagline:'The machine stitches the design for you.',
     blurb:'Gammill’s proven computerized system. Load a design, press start, and get perfect edge-to-edge repeats while you do something else. Built to earn its keep.',
-    shared:[['Operation','Computerized, automated stitching'],['Throat sizes','22″ · 26″ · 30″']],
+    shared:[['Operation','Computerized, automated stitching + hand-guided features'],['Throat sizes','22″ · 26″ · 30″']],
     included:['Full factory refurbishment & certification','Factory warranty','New canvas leaders on the table','Delivery, setup & training','Retrofits include all-new electronics & wiring'],
     units:[
       {id:'8607',throat:26,year:2012,price:35599,monthly:783,table:"12′ Type A w/ Breeze Track",category:'A',retrofit:false,savings:11400,quilts:5,region:null,status:'available',note:null},
@@ -61,7 +61,7 @@ const FAMILIES = [
     image:'https://gammill.com/wp-content/uploads/2023/03/StatlerAscend320x241.png',
     tagline:'Ultimate Precision and Speed',
     blurb:'The Ascend finishes your quilts faster, completing 3-5 quilts per day without losing accuracy. Software features are identical to Statler — the differences are in the hardware, electronics, and motors involved in moving the machine across the quilt.',
-    shared:[['Operation','Computerized, Mod G5 controller'],['Throat sizes','22″ · 26″ · 30″']],
+    shared:[['Operation','Computerized, automated stitching + Premium hand-guided features'],['Throat sizes','22″ · 26″ · 30″']],
     included:['Full factory refurbishment & certification','Factory warranty','New canvas leaders on the table','Delivery, setup & training','Retrofits include all-new electronics & wiring'],
     units:[
       {id:'7891S',throat:26,year:2015,price:43999,monthly:956,table:"12′ Sit/Stand w/ hydraulics, casters & light bar",category:null,retrofit:false,savings:12398,quilts:6,region:'Western Canada only',status:'available',note:'Hydraulic lift, casters, and integrated light bar.'},
