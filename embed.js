@@ -96,7 +96,7 @@ function gplUnitRow(u, fi, ui, fam){
   const region = u.region ? `<div class="gpl-unit-sub" style="color:var(--orange-d);font-weight:600">${u.region}</div>` : '';
   const action = sold
     ? `<button class="gpl-btn gpl-btn--dark gpl-btn--sm" onclick="gplInquiry('Waitlist: ${u.throat}″ ${fam.name} show machine')">Waitlist</button>`
-    : `<button class="gpl-btn gpl-btn--primary gpl-btn--sm" onclick="gplBuild(${fi},${ui})">Build Machine</button>`;
+    : `<button class="gpl-btn gpl-btn--primary gpl-btn--sm" onclick="gplBuild(${fi},${ui})">Select Options</button>`;
   return `<div class="gpl-unit ${sold?'sold':''}" data-type="${fam.type}" data-throat="${u.throat}">
     <div>
       <div class="gpl-badges">${catBadge(u.category)} ${retroBadge(u.retrofit)} ${status}</div>
@@ -207,7 +207,7 @@ function gplDetail(fi,ui){
   const save=u.savings?`<span class="gpl-badge avail" style="font-size:13px;padding:4px 12px">Save ${gFmt(u.savings)} vs. new</span>`:'';
   const cta=sold
     ? `<button class="gpl-btn gpl-btn--dark gpl-btn--block" onclick="gplClose('gpl-modal-detail');gplInquiry('Waitlist: ${u.throat}″ ${fam.name} show machine')">Join the waitlist</button>`
-    : `<button class="gpl-btn gpl-btn--primary gpl-btn--block" onclick="gplClose('gpl-modal-detail');gplBuild(${fi},${ui})">Build Machine</button>`;
+    : `<button class="gpl-btn gpl-btn--primary gpl-btn--block" onclick="gplClose('gpl-modal-detail');gplBuild(${fi},${ui})">Select Options</button>`;
   document.getElementById('gpl-detail-body').innerHTML=`
     <div class="gpl-badges" style="margin-bottom:8px"><span class="gpl-badge retro" style="background:rgba(45,45,45,.07);color:var(--gray)">${fam.typeLabel}</span> ${catBadge(u.category)} ${retroBadge(u.retrofit)} ${sold?'<span class="gpl-badge sold">Sold</span>':'<span class="gpl-badge avail">1 available</span>'}</div>
     <h2 style="font-size:27px;margin-bottom:4px">${u.throat}″ ${fam.name} · ${u.year}</h2>
