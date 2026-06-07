@@ -134,7 +134,11 @@ const GPL_FAQS = [
 
 /* ================= HELPERS ================= */
 const gFmt = n => '$' + n.toLocaleString('en-US');
-const catBadge = c => c ? `<button type="button" class="gpl-badge cat" title="See Category ${c}: age, condition and table style" onclick="event.stopPropagation();gplCategory('${c}')">Category ${c}</button>` : '';
+const STYLE_NAME = {A:'Sit-or-Stand', B:'Pivotal Access', C:'Gammill Original'};
+// Retrofit grade pill (era + table style designation).
+const catBadge = c => c ? `<button type="button" class="gpl-badge cat" title="See what Category ${c} means — era + table style" onclick="event.stopPropagation();gplCategory('${c}')">Category ${c}</button>` : '';
+// Non-retrofit table-style reference pill (points to the table photos/style).
+const styleBadge = c => c ? `<button type="button" class="gpl-badge cat" title="See the ${STYLE_NAME[c]||''} table" onclick="event.stopPropagation();gplCategory('${c}')">${c}-style table</button>` : '';
 const retroBadge = r => r ? `<span class="gpl-badge retro">Retrofit</span>` : '';
 
 /* ================= RENDER ================= */
@@ -147,7 +151,7 @@ function gplUnitRow(u, fi, ui, fam){
     : `<button class="gpl-btn gpl-btn--primary gpl-btn--sm" onclick="gplBuild(${fi},${ui})">Select Options</button>`;
   return `<div class="gpl-unit ${sold?'sold':''}" data-type="${fam.type}" data-throat="${u.throat}">
     <div>
-      <div class="gpl-badges">${catBadge(u.category)} ${retroBadge(u.retrofit)} ${status}</div>
+      <div class="gpl-badges">${u.retrofit?catBadge(u.category):styleBadge(u.category)} ${retroBadge(u.retrofit)} ${status}</div>
       <div class="gpl-unit-title">${u.throat}″ · ${u.year}</div>
       <div class="gpl-unit-sub">${u.table}</div>${region}
     </div>
@@ -262,7 +266,7 @@ function gplDetail(fi,ui){
   const fam=FAMILIES[fi], u=fam.units[ui], sold=u.status==='sold';
   const incl=fam.included.map(i=>`<li><span class="ck">✓</span>${i}</li>`).join('');
   const rows=[['Family',`${fam.name} (${fam.typeLabel})`],['Throat',`${u.throat}″`],['Year',`${u.year}`],['Table',u.table],
-    u.category?['Condition',`Category ${u.category}`]:null,
+    u.category?[u.retrofit?'Category':'Table style',`${u.category} — ${STYLE_NAME[u.category]||''}`]:null,
     u.retrofit?['Build','Factory retrofit — rebuilt head, new electronics']:null,
     u.region?['Availability',u.region]:null].filter(Boolean)
     .map(([k,v])=>`<div class="gpl-drow"><dt>${k}</dt><dd>${v}</dd></div>`).join('');
@@ -272,7 +276,7 @@ function gplDetail(fi,ui){
     ? `<button class="gpl-btn gpl-btn--dark gpl-btn--block" onclick="gplClose('gpl-modal-detail');gplInquiry('Waitlist: ${u.throat}″ ${fam.name} show machine')">Join the waitlist</button>`
     : `<button class="gpl-btn gpl-btn--primary gpl-btn--block" onclick="gplClose('gpl-modal-detail');gplBuild(${fi},${ui})">Select Options</button>`;
   document.getElementById('gpl-detail-body').innerHTML=`
-    <div class="gpl-badges" style="margin-bottom:8px"><span class="gpl-badge retro" style="background:rgba(45,45,45,.07);color:var(--gray)">${fam.typeLabel}</span> ${catBadge(u.category)} ${retroBadge(u.retrofit)} ${sold?'<span class="gpl-badge sold">Sold</span>':'<span class="gpl-badge avail">1 available</span>'}</div>
+    <div class="gpl-badges" style="margin-bottom:8px"><span class="gpl-badge retro" style="background:rgba(45,45,45,.07);color:var(--gray)">${fam.typeLabel}</span> ${u.retrofit?catBadge(u.category):styleBadge(u.category)} ${retroBadge(u.retrofit)} ${sold?'<span class="gpl-badge sold">Sold</span>':'<span class="gpl-badge avail">1 available</span>'}</div>
     <h2 style="font-size:27px;margin-bottom:4px">${u.throat}″ ${fam.name} · ${u.year}</h2>
     <p class="muted" style="margin:0 0 4px">Stock #${u.id} · ${fam.tagline}</p>
     <div class="gpl-detail-img">
