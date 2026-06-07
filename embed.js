@@ -43,7 +43,7 @@ const FAMILIES = [
   { id:'statler', name:'Statler', type:'computerized', typeLabel:'Computerized',
     image:'https://gammill.com/wp-content/uploads/2023/03/Statler340x241.png',
     tagline:'The machine stitches the design for you.',
-    blurb:'Gammill’s proven computerized system. Load a design, press start, and get perfect edge-to-edge repeats while you do something else. Built to earn its keep.',
+    blurb:'Gammill’s proven computerized system. Load a design, press start, and get perfect edge-to-edge repeats while you do something else. Built to earn its keep — 2-3 quilts a day.',
     shared:[['Operation','Computerized, automated stitching + hand-guided features'],['Throat sizes','22″ · 26″ · 30″']],
     included:['Full factory refurbishment & certification','Factory warranty','New canvas leaders on the table','Delivery, setup & training','Retrofits include all-new electronics & wiring'],
     units:[
@@ -60,7 +60,7 @@ const FAMILIES = [
   { id:'ascend', name:'Ascend', type:'computerized', typeLabel:'Computerized',
     image:'https://gammill.com/wp-content/uploads/2023/03/StatlerAscend320x241.png',
     tagline:'Ultimate Precision and Speed',
-    blurb:'The Ascend finishes your quilts faster, completing 3-5 quilts per day without losing accuracy. Software features are identical to Statler — the differences are in the hardware, electronics, and motors involved in moving the machine across the quilt.',
+    blurb:'Gammill’s proven computerized system. Load a design, press start, and get perfect edge-to-edge repeats while you do something else. Built to earn its keep — 3-5 quilts a day.',
     shared:[['Operation','Computerized, automated stitching + Premium hand-guided features'],['Throat sizes','22″ · 26″ · 30″']],
     included:['Full factory refurbishment & certification','Factory warranty','New canvas leaders on the table','Delivery, setup & training','Retrofits include all-new electronics & wiring'],
     units:[
