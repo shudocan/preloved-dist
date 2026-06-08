@@ -162,6 +162,9 @@ const GPL_COMPUTERIZED = `
         <li><span class="ck">✓</span>Thread-break sensor</li>
         <li><span class="ck">✓</span>Full hand-guided / free-motion mode</li>
       </ul>
+
+      <p class="gpl-cap" style="margin:24px 0 10px">What Ascend owners are saying</p>
+      <img src="{{ASSET}}Ascend-quotes.webp" alt="Ascend owner comments — “Absolutely love it” · “Love it for speed and accuracy. Great addition!”" loading="lazy" style="width:100%;border-radius:8px;border:1px solid var(--line);display:block">
     </div>
 
     <p class="gpl-cap" style="margin:24px 0 12px">Built to last — both models</p>
