@@ -227,11 +227,11 @@ const GPL_FEATURES = {
 };
 
 const GPL_FAQS = [
-  ['Is a pre-loved machine really as good as new?','Mechanically and functionally, yes. Every machine is fully rebuilt and factory-certified, and ships with the same factory warranty as a new one. The only differences are cosmetic — a few scratches or paint chips — and table features. The stitch quality is identical.'],
-  ['What’s included in the warranty?','Every pre-loved Gammill comes with the same warranty protection as a new machine, and commercial use is fully covered, plus delivery, professional setup, and hands-on training. <button class="gpl-link" style="font-size:13.5px" onclick="gplWarranty()">Read the full warranty &rarr;</button>'],
-  ['How does financing work?','Financing runs 5–7 years with payments from $272/mo depending on the machine. At an average of $175 per quilt, most machines cover their own payment in just a few quilts a month — each listing shows exactly how many.'],
-  ['Do you deliver and set it up?','Yes. Delivery, installation, and training are included. We get the machine running in your space and make sure you’re confident on it before we leave.'],
-  ['What’s the difference between categories A / B / C?','They reflect age and cosmetic condition, not performance. Category A (2007–2012) and newer machines have the fewest blemishes and the most advanced tables; Category C (1995–2000) shows more wear and uses original-style tables. All three deliver the same stitch.'],
+  ['Is a pre-loved machine really as good as new?','Mechanically and functionally, yes. Every machine is fully rebuilt and factory-certified, and is backed by the same factory warranty as a new one. The only differences are cosmetic — a few scratches or paint chips — and table features. The stitch quality is identical.'],
+  ['What’s included in the warranty?','Every pre-loved Gammill comes with the same warranty protection as a new machine, and commercial use is fully covered, plus delivery, professional setup, and our industry-leading New Owner Training Program. <button class="gpl-link" style="font-size:13.5px" onclick="gplWarranty()">Read the full warranty &rarr;</button>'],
+  ['How does financing work?','Financing runs 5–7 years with payments from $272/mo depending on the machine. At an average of $175 per quilt, most machines cover their own payment in just a few quilts a week or a month — each listing shows exactly how many.'],
+  ['Do you deliver and set it up?','Yes. Delivery, installation, and training are included. We get the machine running in your space. You’ll be completing quilts from the very first day, thanks to our New Owner Training and the hands-on help from our Delivery Technicians.'],
+  ['What’s the difference between categories A / B / C?','They reflect age and cosmetic condition, not performance. Category A (2007–2012) has the fewest blemishes and the most advanced tables; Categories B and C are older but all three deliver the same stitch.'],
   ['What is a retrofit machine?','A retrofit takes an original Gammill head, rebuilds it at the factory, and replaces the electronics, wiring, and computerized components with brand-new systems — a proven frame with current technology at a lower price.'],
   ['Can I trade in my current machine?','We take any Gammill machine in trade, but not other brands.'],
 ];
