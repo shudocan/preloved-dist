@@ -557,8 +557,8 @@ function gplInquiry(ctx){
 // (Explicit create() is more reliable than auto-scan inside a modal that starts hidden.)
 function gplLoadInquiryForm(){
   if(window.__gplIqFormDone) return;
-  function create(){ if(window.__gplIqFormDone||!window.hbspt||!window.hbspt.forms) return; window.__gplIqFormDone=true;
-    window.hbspt.forms.create({region:'na1',portalId:'20410581',formId:'f6616e36-207e-407d-b7c0-8a50ba671cab',target:'#gpl-iq-hsform'}); }
+  var create=function(){ if(window.__gplIqFormDone||!window.hbspt||!window.hbspt.forms) return; window.__gplIqFormDone=true;
+    window.hbspt.forms.create({region:'na1',portalId:'20410581',formId:'f6616e36-207e-407d-b7c0-8a50ba671cab',target:'#gpl-iq-hsform'}); };
   if(window.hbspt&&window.hbspt.forms){ create(); return; }
   if(window.__gplIqScript) return; window.__gplIqScript=true;
   var s=document.createElement('script'); s.src='https://js.hsforms.net/forms/embed/v2.js'; s.onload=create; document.body.appendChild(s);
@@ -621,5 +621,5 @@ function gplLoadInventory(){
 gplRenderFAQ(); gplTab(0); gplApplyMachineFilter();
 gplLoadInventory();
 gplInitSlider();
-  Object.assign(window, {create,gplApply,gplApplyMachineFilter,gplAsset,gplBuild,gplCategory,gplClose,gplCsVids,gplDeposit,gplDetail,gplFamily,gplFeatTab,gplFeatures,gplFilterThroat,gplFilterType,gplInitSlider,gplInquiry,gplLoadInquiryForm,gplLoadInventory,gplOpen,gplParseCSV,gplPricing,gplRenderFAQ,gplRenderFamilies,gplRenderHeroStats,gplResLabel,gplReserve,gplRow,gplSlideSchedule,gplSlideTo,gplSubmit,gplSwapPhoto,gplTab,gplUnitRow,gplVidEmbed,gplVisionVids,gplWarranty,gplWarrantyFull,gplZoom});
+  Object.assign(window, {gplApply,gplApplyMachineFilter,gplAsset,gplBuild,gplCategory,gplClose,gplCsVids,gplDeposit,gplDetail,gplFamily,gplFeatTab,gplFeatures,gplFilterThroat,gplFilterType,gplInitSlider,gplInquiry,gplLoadInquiryForm,gplLoadInventory,gplOpen,gplParseCSV,gplPricing,gplRenderFAQ,gplRenderFamilies,gplRenderHeroStats,gplResLabel,gplReserve,gplRow,gplSlideSchedule,gplSlideTo,gplSubmit,gplSwapPhoto,gplTab,gplUnitRow,gplVidEmbed,gplVisionVids,gplWarranty,gplWarrantyFull,gplZoom});
 })();
