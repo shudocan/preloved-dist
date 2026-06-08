@@ -232,7 +232,7 @@ const GPL_FAQS = [
   ['How does financing work?','Financing runs 5–7 years with payments from $272/mo depending on the machine. At an average of $175 per quilt, most machines cover their own payment in just a few quilts a week or a month — each listing shows exactly how many.'],
   ['Do you deliver and set it up?','Yes. Delivery, installation, and training are included. We get the machine running in your space. You’ll be completing quilts from the very first day, thanks to our New Owner Training and the hands-on help from our Delivery Technicians.'],
   ['What’s the difference between categories A / B / C?','They reflect age and cosmetic condition, not performance. Category A (2007–2012) has the fewest blemishes and the most advanced tables; Categories B and C are older but all three deliver the same stitch.'],
-  ['What is a retrofit machine?','A retrofit takes an original Gammill head, rebuilds it at the factory, and replaces the electronics, wiring, and computerized components with brand-new systems — a proven frame with current technology at a lower price.'],
+  ['What is a retrofit machine?','A retrofit is done by rebuilding the mechanical elements of the machine at the factory, and completely removing every trace of the original electrical and electronics. 100% of the electronics, wiring, and computerized components are new on a retrofit machine.'],
   ['Can I trade in my current machine?','We take any Gammill machine in trade, but not other brands.'],
 ];
 
