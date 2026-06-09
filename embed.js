@@ -514,14 +514,26 @@ function gplResLabel(fam,u){
 // and the Pre-Loved quote template. See gammill-build-a-machine PRELOVED-DEEPLINK.md.
 function gplBuild(fi,ui){
   const fam=FAMILIES[fi],u=fam.units[ui];
-  const desc=`${u.throat}″ ${fam.name} · ${u.year}${u.retrofit?' · Retrofit':''} · #${u.id}`;
+  // Retrofit units are graded by table-style CLASS (A/B/C); originals are DATED by year.
+  // That maps to the configurator's mutually-exclusive preloved_class vs preloved_year.
+  const graded = !!(u.retrofit && u.category);
+  const yr = String(u.year==null?'':u.year).match(/\b(\d{4})\b/);   // 4-digit only (skip ranges like "2001–2009")
+  // Quote line item — full, human, verbatim text exactly as it should read on the quote.
+  const desc = graded
+    ? `${u.throat}″ ${fam.name} Pre-Loved · Class ${u.category} · #${u.id}`
+    : `${yr?yr[1]+' ':''}Pre-Loved ${fam.name} · ${u.throat}″ throat · #${u.id}`;
   const params=new URLSearchParams({
     template:'preloved',
+    preloved_category:(u.dealCategory||'pre-loved'),   // pre-loved | paint-flaw | show | classroom (no sheet col yet → default)
     preloved_product_id:'1352372845',
-    preloved_family:fam.id,
+    preloved_family:fam.id,                            // statler | vision | ascend
     preloved_price_cents:String((u.price||0)*100),
-    preloved_description:desc
+    preloved_description:desc                           // stays WHOLE — never stripped
   });
+  if(graded)      params.set('preloved_class', u.category);   // year XOR class
+  else if(yr)     params.set('preloved_year',  yr[1]);
+  if(u.throat!=null && /^\d+$/.test(String(u.throat)))
+    params.set('preloved_throat', String(u.throat));         // integer inches, when known
   window.open('https://buildamachine.gammilldealer.com/?'+params.toString(),'_blank','noopener');
 }
 // Legacy reserve/deposit modal — superseded by Build Machine, kept for reference.
