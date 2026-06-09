@@ -548,6 +548,7 @@ function gplTab(i){
 function gplInquiry(ctx){
   ctx = typeof ctx==='string'?ctx:'';
   const t=document.getElementById('gpl-iq-title'), c=document.getElementById('gpl-iq-ctx');
+  if(t)t.style.display=''; if(c)c.style.display='';   // restore header (it gets hidden after a successful submit)
   if(ctx){ c.innerHTML=`About: <strong style="color:var(--char)">${ctx}</strong>. A Product Specialist will get back to you, usually same day.`;
     t.textContent = ctx.indexOf('Waitlist')===0?'Join the waitlist':'Reserve or request info'; }
   else { c.textContent='Tell us what you’re looking for. A Product Specialist will get back to you, usually same day.'; t.textContent='Reach a Product Specialist'; }
@@ -559,7 +560,9 @@ function gplInquiry(ctx){
 function gplLoadInquiryForm(){
   if(window.__gplIqFormDone) return;
   var create=function(){ if(window.__gplIqFormDone||!window.hbspt||!window.hbspt.forms) return; window.__gplIqFormDone=true;
-    window.hbspt.forms.create({region:'na1',portalId:'20410581',formId:'f6616e36-207e-407d-b7c0-8a50ba671cab',target:'#gpl-iq-hsform'}); };
+    window.hbspt.forms.create({region:'na1',portalId:'20410581',formId:'f6616e36-207e-407d-b7c0-8a50ba671cab',target:'#gpl-iq-hsform',
+      onFormSubmitted:function(){ var t=document.getElementById('gpl-iq-title'),c=document.getElementById('gpl-iq-ctx'); if(t)t.style.display='none'; if(c)c.style.display='none'; }
+    }); };
   if(window.hbspt&&window.hbspt.forms){ create(); return; }
   if(window.__gplIqScript) return; window.__gplIqScript=true;
   var s=document.createElement('script'); s.src='https://js.hsforms.net/forms/embed/v2.js'; s.onload=create; document.body.appendChild(s);
