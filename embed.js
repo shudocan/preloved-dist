@@ -372,9 +372,7 @@ function gplApplyMachineFilter(){
     html+=`<div class="gpl-mgroup"><p class="gpl-typepanel-intro">${c.intro} <a href="${c.url}" target="_blank" rel="noopener">${c.link}</a></p>`
         + `<div class="gpl-rows">${rows||'<div class="gpl-row"><span class="muted">None in stock right now.</span></div>'}</div></div>`;
   });
-  target.innerHTML = html
-    ? `<p class="gpl-row-legend">Tap any underlined term — category, table style, or year — to see what it means.</p>` + html
-    : `<p class="gpl-typepanel-intro">Nothing selected — tap a type above to view machines.</p>`;
+  target.innerHTML = html || `<p class="gpl-typepanel-intro">Nothing selected — tap a type above to view machines.</p>`;
 }
 
 /* ===== Testimonial slider: auto-advance, per-slide delay scales with review length ===== */
