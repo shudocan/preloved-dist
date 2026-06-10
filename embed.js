@@ -240,6 +240,7 @@ const GPL_FAQS = [
   ['What’s the difference between categories A / B / C?','They reflect age and cosmetic condition, not performance. Category A (2007–2012) has the fewest blemishes and the most advanced tables; Categories B and C are older but all three deliver the same stitch.'],
   ['What is a retrofit machine?','A retrofit is done by rebuilding the mechanical elements of the machine at the factory, and completely removing every trace of the original electrical and electronics. 100% of the electronics, wiring, and computerized components are new on a retrofit machine.'],
   ['Can I trade in my current machine?','We take any Gammill machine in trade, but not other brands.'],
+  ['What are the terms?','Order is secured with a $1,000 non-refundable deposit. Must accept delivery any time prior to July 31, 2026. Cannot be combined with other offers; no cash value.'],
 ];
 
 /* ================= HELPERS ================= */
