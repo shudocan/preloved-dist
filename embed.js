@@ -543,7 +543,7 @@ function gplBuild(fi,ui){
   else if(yr)     params.set('preloved_year',  yr[1]);
   if(u.throat!=null && /^\d+$/.test(String(u.throat)))
     params.set('preloved_throat', String(u.throat));         // integer inches, when known
-  window.open('https://buildamachine.gammilldealer.com/?'+params.toString(),'_blank','noopener');
+  window.open('https://gammill.com/build/?'+params.toString(),'_blank','noopener');
 }
 // Legacy reserve/deposit modal — superseded by Build Machine, kept for reference.
 function gplReserve(fi,ui){
