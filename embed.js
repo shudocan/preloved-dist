@@ -386,7 +386,7 @@ function gplApplyMachineFilter(){
         + `<div class="gpl-mghead"><a class="gpl-mgbanner" href="${c.url}" target="_blank" rel="noopener"><img src="${c.img}" alt="${c.alt}" loading="lazy"></a>`
         + `<a class="gpl-mgfeat" href="${c.url}" target="_blank" rel="noopener">${c.link}</a></div>`
         + `<div class="gpl-rows">${rows|| (window.__gplInvLoading?'<div class="gpl-row"><span class="muted">Loading available machines…</span></div>':'<div class="gpl-row"><span class="muted">None in stock right now.</span></div>')}`
-        + `<div class="gpl-groupcta"><span class="gpl-groupcta-txt">Don’t see the ${fam.name} you’re looking for?</span><button class="gpl-btn gpl-btn--primary" onclick="gplInquiry()">Tell us what you want</button></div></div></div>`;
+        + `<div class="gpl-groupcta"><span class="gpl-groupcta-txt">Have questions? Need help deciding?</span><button class="gpl-btn gpl-btn--primary" onclick="gplInquiry()">Tell us what you want</button></div></div></div>`;
   });
   target.innerHTML = html || `<p class="gpl-typepanel-intro">Nothing selected — tap a type above to view machines.</p>`;
 }
