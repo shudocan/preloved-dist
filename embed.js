@@ -24,19 +24,20 @@
 // can otherwise trigger it). Set as early as the bundle runs.
 try { window.hsConversationsSettings = Object.assign({}, window.hsConversationsSettings, { loadImmediately: false }); } catch(e){}
 const GPL_CFG = { email:'sales@gammill.com', phoneHref:'+14172565919', pricePerQuilt:175,
-  // Live inventory: a published Google Sheet (one row per unit). The page renders
-  // the baked-in FAMILIES below INSTANTLY, then refreshes from this sheet. If the
-  // fetch fails for any reason, the baked-in snapshot stays — inventory can never
-  // blank the page. Sheet must be shared "Anyone with the link -> Viewer".
+  // Live inventory: a published Google Sheet (one row per unit). The page shows
+  // "Loading…" until this sheet answers; units come ONLY from the sheet. If the
+  // fetch fails, an error message shows in place of the unit rows — there is no
+  // baked-in snapshot. Sheet must be shared "Anyone with the link -> Viewer".
   // One spreadsheet, many tabs. Each page reads its own tab via the loader's
   // data-gid / data-sheet (set by build wrapper -> window.GPL_SHEET_GID/NAME).
   sheetId: '1x0S6gnlnMGPq0uXl2JhxdLIr86DzjIYiBG8Asg3kJPM' };
 
-/* ================= INVENTORY (edit to update the page) =================
-   FAMILY = shared story.  unit = one real machine.
+/* ================= FAMILIES (family-level copy; units come from the sheet) =================
+   FAMILY = shared story. units start empty and are filled from the Google Sheet —
+   edit machine rows in the sheet, not here. Sheet columns per unit:
    throat(number) year(num|range str) price(num|null) monthly(num) table(str)
    category('A'|'B'|'C'|null) retrofit(bool) savings(num) quilts(num|null)
-   region(str|null) memo(str|null) status('available'|'sold') note(str|null)
+   region(str|null) memo(str|null) status('active'|'sold') note(str|null)
    memo = free-text clarifier shown by the year/table (e.g. "2017 head, fitted with a 2019 Statler Retrofit"); blank = nothing shows.
 */
 const FAMILIES = [
@@ -46,46 +47,21 @@ const FAMILIES = [
     blurb:'Free-motion longarm quilting with full creative control. The most affordable way into a Gammill — and the same legendary stitch.',
     shared:[['Operation','Hand-guided, free-motion'],['Throat sizes','18″ · 22″ · 26″ · 30″'],['Upgrade path','Computerized upgrades available']],
     included:['Full factory refurbishment & certification','Factory warranty','New canvas leaders on the table','Delivery, setup & training'],
-    units:[
-      {id:'0941-4A',throat:22,year:2017,price:12500,monthly:272,table:"12′ Type A",category:null,retrofit:false,savings:9499,quilts:2,region:null,status:'available',note:'Computerized upgrades available separately.'},
-      {id:'8933S',throat:26,year:2017,price:17450,monthly:380,table:"12′ Type A",category:null,retrofit:false,savings:9049,quilts:3,region:null,status:'available',note:'Computerized upgrades available separately.'},
-      {id:'9025S',throat:26,year:2018,price:18850,monthly:413,table:"12′ Type A",category:null,retrofit:false,savings:7649,quilts:3,region:null,status:'available',note:'Computerized upgrades available separately.'},
-      {id:'7061',throat:30,year:2021,price:25499,monthly:554,table:"12′ Sit/Stand (alt. size +$850)",category:null,retrofit:false,savings:5500,quilts:4,region:null,status:'available',note:'Newest hand-guided machine in stock.'},
-      {id:'18A',throat:18,year:'2010–2014',price:13999,monthly:304,table:"10′ or 12′ (your choice)",category:'A',retrofit:true,savings:2500,quilts:null,region:null,status:'available',note:'Retrofit — rebuilt head with all-new electronics.'},
-      {id:'18B',throat:18,year:'2001–2009',price:12999,monthly:283,table:"10′ or 12′ (your choice)",category:'C',retrofit:true,savings:3500,quilts:null,region:null,status:'available',note:'Retrofit — rebuilt head with all-new electronics.'},
-    ]},
+    units:[]},
   { id:'statler', name:'Statler', type:'computerized', typeLabel:'Computerized',
     image:'https://gammill.com/wp-content/uploads/2023/03/Statler340x241.png',
     tagline:'The machine stitches the design for you.',
     blurb:'Gammill’s proven computerized system. Load a design, press start, and get perfect edge-to-edge repeats while you do something else. Built to earn its keep — 2-3 quilts a day.',
     shared:[['Operation','Computerized, automated stitching + hand-guided features'],['Throat sizes','22″ · 26″ · 30″']],
     included:['Full factory refurbishment & certification','Factory warranty','New canvas leaders on the table','Delivery, setup & training','Retrofits include all-new electronics & wiring'],
-    units:[
-      {id:'8607',throat:26,year:2012,price:35599,monthly:783,table:"12′ Type A w/ Breeze Track",category:'A',retrofit:false,savings:11400,quilts:5,region:null,status:'available',note:null},
-      {id:'4909',throat:30,year:2009,price:35399,monthly:606,table:"12′ Type A w/ Breeze Track",category:null,retrofit:false,savings:16600,quilts:4,region:null,status:'available',note:'Mod G — largest savings vs. new in the lineup.'},
-      {id:'9907',throat:26,year:2017,price:40749,monthly:880,table:"12′ Pivotal Access w/ Breeze Track (alt. +$850)",category:'A',retrofit:true,savings:6250,quilts:6,region:null,status:'available',note:'2019 Statler retrofit on a 2017 head.'},
-      {id:'6548M',throat:30,year:2018,price:42899,monthly:935,table:"12′ Type A w/ Breeze Track",category:'A',retrofit:false,savings:9100,quilts:6,region:null,status:'available',note:'Newest computerized Statler in stock.'},
-      {id:'22-A',throat:22,year:'2010–2012',price:37499,monthly:815,table:"12′ Type A w/ Breeze Track",category:'A',retrofit:true,savings:5500,quilts:5,region:null,status:'available',note:'New Statler retrofit on a rebuilt head.'},
-      {id:'26-B',throat:26,year:'2001–2006',price:37499,monthly:815,table:"12′ Type B w/ Breeze Track",category:'B',retrofit:true,savings:9500,quilts:5,region:null,status:'available',note:'Factory rebuilt + new Statler retrofit.'},
-      {id:'30-B',throat:30,year:'2001–2006',price:40999,monthly:891,table:"12′ Type B w/ Breeze Track",category:'B',retrofit:true,savings:11000,quilts:6,region:null,status:'available',note:'Factory rebuilt + new Statler retrofit.'},
-      {id:'26-C',throat:26,year:'1995–2000',price:32999,monthly:717,table:"14′ Type C",category:'C',retrofit:true,savings:14000,quilts:5,region:null,status:'available',note:'Factory rebuilt + new Statler retrofit. Lowest entry to computerized.'},
-      {id:'30-C',throat:30,year:'1995–2000',price:36499,monthly:793,table:"14′ Type C w/ Breeze Track",category:'C',retrofit:true,savings:15500,quilts:5,region:null,status:'available',note:'Factory rebuilt + new Statler retrofit.'},
-    ]},
+    units:[]},
   { id:'ascend', name:'Ascend', type:'computerized', typeLabel:'Computerized',
     image:'https://gammill.com/wp-content/uploads/2023/03/StatlerAscend320x241.png',
     tagline:'Ultimate Precision and Speed',
     blurb:'Gammill’s proven computerized system. Load a design, press start, and get perfect edge-to-edge repeats while you do something else. Built to earn its keep — 3-5 quilts a day.',
     shared:[['Operation','Computerized, automated stitching + Premium hand-guided features'],['Throat sizes','22″ · 26″ · 30″']],
     included:['Full factory refurbishment & certification','Factory warranty','New canvas leaders on the table','Delivery, setup & training','Retrofits include all-new electronics & wiring'],
-    units:[
-      {id:'7891S',throat:26,year:2015,price:43999,monthly:956,table:"12′ Sit/Stand w/ hydraulics, casters & light bar",category:null,retrofit:false,savings:12398,quilts:6,region:'Western Canada only',status:'available',note:'Hydraulic lift, casters, and integrated light bar.'},
-      {id:'22-A-asc',throat:22,year:'2010–2012',price:44499,monthly:967,table:"12′ Type A w/ Breeze Track",category:'A',retrofit:true,savings:4500,quilts:6,region:null,status:'available',note:'Mod G5 controller on a rebuilt head.'},
-      {id:'26-B-asc',throat:26,year:'2001–2006',price:44499,monthly:967,table:"12′ Type B w/ Breeze Track",category:'B',retrofit:true,savings:8500,quilts:6,region:null,status:'available',note:'Factory rebuilt + new Ascend retrofit, Mod G5.'},
-      {id:'30-B-asc',throat:30,year:'2001–2006',price:46999,monthly:1022,table:"12′ Type B w/ Breeze Track",category:'B',retrofit:true,savings:11000,quilts:6,region:null,status:'available',note:'Factory rebuilt + new Ascend retrofit, Mod G5.'},
-      {id:'26-C-asc',throat:26,year:'1995–2000',price:39999,monthly:869,table:"14′ Type C w/ Breeze Track",category:'C',retrofit:true,savings:13000,quilts:5,region:null,status:'available',note:'Factory rebuilt + new Ascend retrofit.'},
-      {id:'30-C-asc',throat:30,year:'1995–2000',price:43499,monthly:946,table:"14′ Type C w/ Breeze Track",category:'C',retrofit:true,savings:14500,quilts:6,region:null,status:'available',note:'Factory rebuilt, Mod G5 controller.'},
-      {id:'7090M',throat:30,year:'Show machine',price:null,monthly:950,table:"Displayed one week per year",category:null,retrofit:false,savings:null,quilts:6,region:null,status:'sold',note:'Show machine — recently sold. Join the waitlist for the next one.'},
-    ]},
+    units:[]},
 ];
 
 /* Per-family "Review … Features" modal content (from the gammill.com machine
@@ -385,7 +361,9 @@ function gplApplyMachineFilter(){
     html+=`<div class="gpl-mgroup"><p class="gpl-typepanel-intro gpl-mgintro">${c.intro}</p>`
         + `<div class="gpl-mghead"><a class="gpl-mgbanner" href="${c.url}" target="_blank" rel="noopener"><img src="${c.img}" alt="${c.alt}" loading="lazy"></a>`
         + `<a class="gpl-mgfeat" href="${c.url}" target="_blank" rel="noopener">${c.link}</a></div>`
-        + `<div class="gpl-rows">${rows|| (window.__gplInvLoading?'<div class="gpl-row"><span class="muted">Loading available machines…</span></div>':'<div class="gpl-row"><span class="muted">None in stock right now.</span></div>')}`
+        + `<div class="gpl-rows">${rows|| (window.__gplInvLoading?'<div class="gpl-row"><span class="muted">Loading available machines…</span></div>'
+            : window.__gplInvError?'<div class="gpl-row"><span class="muted">Sorry — we couldn’t load current inventory. Please refresh the page, or call <a class="gpl-link" href="tel:'+GPL_CFG.phoneHref+'">417-256-5919 ext. 5</a>.</span></div>'
+            : '<div class="gpl-row"><span class="muted">None in stock right now.</span></div>')}`
         + `<div class="gpl-groupcta"><span class="gpl-groupcta-txt">Have questions? Need help deciding?</span><button class="gpl-btn gpl-btn--primary" onclick="gplInquiry()">Reach a Product Specialist</button></div></div></div>`;
   });
   target.innerHTML = html || `<p class="gpl-typepanel-intro">Nothing selected — tap a type above to view machines.</p>`;
@@ -637,13 +615,14 @@ function gplSheetUrl(){
   return 'https://docs.google.com/spreadsheets/d/'+GPL_CFG.sheetId+'/gviz/tq?tqx=out:csv'+tab;
 }
 function gplLoadInventory(){
-  const url=gplSheetUrl(); if(!url) return;
+  const url=gplSheetUrl();
+  if(!url){ window.__gplInvError=true; window.__gplInvLoading=false; gplApplyMachineFilter(); return; }
   fetch(url,{cache:'no-store'})
     .then(r=>{ if(!r.ok) throw 0; return r.text(); })
     .then(text=>{
       const rows=gplParseCSV(text).filter(r=>r.length>1);
       const head=rows[0]?rows[0].map(h=>h.trim().toLowerCase()):[]; const idx=n=>head.indexOf(n);
-      if(rows.length<2||idx('id')<0||idx('family')<0||idx('status')<0) return;   // bad/empty sheet: keep what we have
+      if(idx('id')<0||idx('family')<0||idx('status')<0) throw 0;               // malformed sheet -> error state
       const num=v=>{ v=(v||'').toString().replace(/[$,]/g,'').trim(); return v===''||isNaN(Number(v))?null:Number(v); };
       const byFam={};
       for(let r=1;r<rows.length;r++){ const row=rows[r]; const g=k=>{ const j=idx(k); return j<0?'':(row[j]||'').trim(); };
@@ -657,19 +636,17 @@ function gplLoadInventory(){
           memo:g('memo')||null, status:(st==='sold'?'sold':'available'), note:g('note')||null, image:g('image')||null };
         (byFam[fam]=byFam[fam]||[]).push(u);
       }
-      const total=Object.values(byFam).reduce((a,b)=>a+b.length,0);
-      if(total<1 && !window.__gplCustomTab) return;                         // default page never wipes to empty
-      FAMILIES.forEach(f=>{ f.units = byFam[f.id] || []; });
+      FAMILIES.forEach(f=>{ f.units = byFam[f.id] || []; });                // valid-but-empty sheet = genuinely none in stock
+      window.__gplInvError=false;
     })
-    .catch(()=>{ /* default page keeps baked-in; custom tab stays empty */ })
+    .catch(()=>{ window.__gplInvError=true; })
     .finally(()=>{ window.__gplInvLoading=false; gplApplyMachineFilter(); });
 }
 
 /* init */
-// A non-default tab (the retro page) must NOT flash the baked-in original snapshot —
-// clear it and show "Loading…" until that tab's rows arrive.
+// Units come only from the sheet: every page shows "Loading…" until its tab's rows arrive.
 window.__gplCustomTab = !!(window.GPL_SHEET_NAME || (window.GPL_SHEET_GID && window.GPL_SHEET_GID!=='0'));
-if(window.__gplCustomTab){ FAMILIES.forEach(f=>{ f.units=[]; }); window.__gplInvLoading=true; }
+window.__gplInvLoading=true; window.__gplInvError=false;
 gplRenderFAQ(); gplTab(0); gplApplyMachineFilter();
 // retro page: cross-promo points back to the non-retrofitted machines
 if(window.__gplCustomTab){
