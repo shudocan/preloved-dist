@@ -685,18 +685,24 @@ function gplUnitName(u,fam){
   return u.retrofit ? `${u.throat}″ Gammill ${fam.name} Pre-loved + Retrofit${u.category?' · Category '+u.category:''}`
                     : `${u.throat}″ Gammill ${fam.name} Pre-loved${u.year?' · '+u.year:''}`;
 }
+// Delivery terms shown to Google (merchant listings) and other crawlers alongside every offer.
+const GPL_SHIPPING={ "@type":"OfferShippingDetails",
+  "description":"Delivery, set-up, and training are included in the lower 48. Remote locations may incur additional charges.",
+  "shippingRate":{"@type":"MonetaryAmount","value":"0","currency":"USD"},
+  "shippingDestination":{"@type":"DefinedRegion","addressCountry":"US"} };
 function gplInjectStructuredData(){
   const items=[]; let pos=0;
   FAMILIES.forEach(fam=>{ fam.units.forEach(u=>{
     if(u.status==='sold' || !u.id) return;
     const c=GPL_MCFG[fam.id]||{};
-    const desc=[u.table?('Table: '+u.table+'.'):'', u.memo?(u.memo.replace(/\.?\s*$/,'.')):'', u.retrofit?'Factory retrofit: 100% new electronics, wiring and computer.':'Original electronics.', 'Fully rebuilt, certified and covered by the Gammill factory warranty. Delivery, setup and New Owner Training included.'].filter(Boolean).join(' ');
+    const desc=[u.table?('Table: '+u.table+'.'):'', u.memo?(u.memo.replace(/\.?\s*$/,'.')):'', u.retrofit?'Factory retrofit: 100% new electronics, wiring and computer.':'Original electronics.', 'Fully rebuilt, certified and covered by the Gammill factory warranty. Delivery, set-up, and training are included in the lower 48. Remote locations may incur additional charges.'].filter(Boolean).join(' ');
     const prod={ "@type":"Product", "name":gplUnitName(u,fam), "sku":String(u.id), "brand":{"@type":"Brand","name":"Gammill"},
       "category":"Longarm quilting machines", "image":c.img||fam.image, "description":desc,
       "itemCondition":"https://schema.org/RefurbishedCondition",
       "url":gplPageUrl()+'?unit='+encodeURIComponent(u.id) };
     if(u.price){ prod.offers={ "@type":"Offer", "price":String(u.price), "priceCurrency":"USD", "availability":"https://schema.org/InStock",
-      "itemCondition":"https://schema.org/RefurbishedCondition", "url":prod.url, "seller":{"@type":"Organization","name":"Gammill, Inc."} }; }
+      "itemCondition":"https://schema.org/RefurbishedCondition", "url":prod.url, "seller":{"@type":"Organization","name":"Gammill, Inc."},
+      "shippingDetails":GPL_SHIPPING }; }
     items.push({ "@type":"ListItem", "position":++pos, "item":prod });
   }); });
   const old=document.getElementById('gpl-ld-units'); if(old) old.remove();
